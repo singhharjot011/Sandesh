@@ -1,22 +1,37 @@
 import MessageContent from "./MessageContent";
 import MessageInput from "./MessageInput";
+import { useChat } from "../contexts/chatContext";
 
 function MessageBody() {
+  const { dispatch, curChat, selectedInteractor, data } = useChat();
+  const chat = data.filter((c) => c.interactorId === selectedInteractor);
+
+  function getMilliseconds(dateTimeString) {
+    return new Date(dateTimeString).getTime();
+  }
+
   return (
     <div className="flex flex-col w-full justify-end">
       <div className="flex flex-col-reverse p-4">
-        <MessageContent
-          position="self-start"
-          bgColor="bg-green-700"
-          textColor="text-white"
-          statusTextColor="text-gray-50"
-        />
-        <MessageContent
-          position="self-end"
-          bgColor="bg-gray-100"
-          textColor="text-black"
-          statusTextColor="text-gray-400"
-        />
+        {
+          chat
+            .sort(
+              (a, b) =>
+                getMilliseconds(b.timestamp) - getMilliseconds(a.timestamp)
+            )
+            .map((c) => (
+              <MessageContent
+                position={c.isSender ? "self-end" : "self-start"}
+                bgColor={c.isSender ? "bg-gray-100" : "bg-green-700"}
+                textColor={c.isSender ? "text-black" : "text-gray-50"}
+                statusTextColor={c.isSender ? "text-gray-800" : "text-gray-200"}
+                chatObj={c}
+                key={c.id}
+                isSender={c.isSender}
+              />
+            ))
+          // .
+        }
       </div>
       <MessageInput />
     </div>

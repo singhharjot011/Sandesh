@@ -1,19 +1,24 @@
-import Senders from "./Senders";
+import Interactors from "./Interactors";
 
 import { useChat } from "../contexts/chatContext";
 
 function Sidebar() {
-  const { data } = useChat();
-  const sendersMap = new Map(data.map((c) => [c.senderId, c]));
-  const allSenders = [...sendersMap.values()];
-
-
+  const { data, selectedInteractor } = useChat();
+  const interactorsMap = new Map(data.map((c) => [c.interactorId, c]));
+  const allInteractors = [...interactorsMap.values()];
 
   return (
-    <div className="w-1/5 h-full border-r" >
-      {allSenders.map(
+    <div className="w-1/5 h-full border-r">
+      {allInteractors.map(
         (chat) =>
-          chat.senderId && <Senders sender={chat.senderName} key={chat.id} onClick={handleSelectSender}/>
+          chat.interactorId && (
+            <Interactors
+              interactorName={chat.interactorName}
+              interactorId={chat.interactorId}
+              key={chat.id}
+              active={chat.interactorId === selectedInteractor ? true : false}
+            />
+          )
       )}
     </div>
   );

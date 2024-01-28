@@ -1,6 +1,6 @@
 import "./App.css";
 import AppLayout from "./pages/AppLayout";
-import { ChatProvider, useChat } from "./contexts/chatContext";
+import { ChatProvider } from "./contexts/chatContext";
 
 function App() {
   return (
