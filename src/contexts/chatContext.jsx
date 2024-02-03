@@ -43,7 +43,13 @@ const FAKE_DATA = [
   },
 ];
 
-const initialState = { selectedInteractor: null, curChat: {} };
+const initialState = {
+  selectedInteractor: null,
+  selectedInteractorName: "",
+  data: FAKE_DATA,
+  curChat: {},
+  myText: "",
+};
 
 const ChatContext = createContext();
 
@@ -57,24 +63,45 @@ const useChat = function () {
 function reducer(state, action) {
   switch (action.type) {
     case "interactor/selected":
-      return { ...state, selectedInteractor: action.payload };
+      if (state.selectedInteractor === action.payload) {
+        return {
+          ...state,
+          selectedInteractor: null,
+          selectedInteractorName: "",
+        };
+      }
+      return {
+        ...state,
+        selectedInteractor: action.payload.interactorId,
+        selectedInteractorName: action.payload.interactorName,
+      };
     case "chat/loaded":
       return { ...state, curChat: action.payload };
-
+    case "typed/text":
+      return { ...state, myText: action.payload };
+    case "data/updated":
+      return { ...state, data: action.payload };
     default:
       throw new Error("Invalid Action");
   }
 }
 
 function ChatProvider({ children }) {
-  const [{ selectedInteractor, curChat }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [
+    { selectedInteractor, selectedInteractorName, curChat, myText, data },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   return (
     <ChatContext.Provider
-      value={{ data: FAKE_DATA, dispatch, selectedInteractor, curChat }}
+      value={{
+        data,
+        dispatch,
+        selectedInteractor,
+        selectedInteractorName,
+        curChat,
+        myText,
+      }}
     >
       {children}
     </ChatContext.Provider>

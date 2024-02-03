@@ -1,7 +1,43 @@
+import { useEffect, useRef } from "react";
+import { useChat } from "../contexts/chatContext";
+
 function MessageInput() {
+  const textAreaRef = useRef();
+  const {
+    dispatch,
+    myText,
+    curChat,
+    selectedInteractor,
+    selectedInteractorName,
+    data,
+  } = useChat();
+
+  useEffect(() => {
+    textAreaRef.current.style.height = "auto";
+    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+  }, [myText]);
+
   return (
     <div>
-      <form>
+      <form
+        className="my-auto"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const newChatObj = {
+            id: data.length + 1,
+            interactorId: selectedInteractor,
+            interactorName: selectedInteractorName,
+            isSender: true,
+            message: myText,
+            timestamp: new Date().toISOString(),
+          };
+          console.log(data);
+          console.log(curChat);
+
+          dispatch({ type: "data/updated", payload: [...data, newChatObj] });
+          // dispatch({ type: "chat/loaded", payload: [...curChat, newChatObj] });
+        }}
+      >
         <label htmlFor="chat" className="sr-only">
           Your message
         </label>
@@ -62,8 +98,13 @@ function MessageInput() {
           <textarea
             id="chat"
             rows="1"
-            className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-y h-auto"
             placeholder="Your message..."
+            ref={textAreaRef}
+            value={myText}
+            onChange={(e) => {
+              dispatch({ type: "typed/text", payload: e.target.value });
+            }}
           ></textarea>
           <button
             type="submit"

@@ -1,6 +1,6 @@
 import { useChat } from "../contexts/chatContext";
 
-function Senders({ active, interactorName, interactorId }) {
+function Interactors({ active, interactorName, interactorId }) {
   const { dispatch } = useChat();
 
   return (
@@ -10,7 +10,13 @@ function Senders({ active, interactorName, interactorId }) {
           active ? "bg-green-700" : ""
         }`}
         onClick={() =>
-          dispatch({ type: "interactor/selected", payload: interactorId })
+          dispatch({
+            type: "interactor/selected",
+            payload: {
+              interactorId: interactorId,
+              interactorName: interactorName,
+            },
+          })
         }
       >
         <img
@@ -30,4 +36,4 @@ function Senders({ active, interactorName, interactorId }) {
   );
 }
 
-export default Senders;
+export default Interactors;
