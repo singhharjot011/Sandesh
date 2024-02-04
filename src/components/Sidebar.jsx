@@ -8,19 +8,27 @@ function Sidebar() {
   const allInteractors = [...interactorsMap.values()];
 
   return (
-    <div className="w-1/5 h-full border-r sticky top-0">
-      {allInteractors.map(
-        (chat) =>
-          chat.interactorId && (
-            <Interactors
-              interactorName={chat.interactorName}
-              interactorId={chat.interactorId}
-              key={chat.id}
-              active={chat.interactorId === selectedInteractor ? true : false}
-            />
-          )
-      )}
-    </div>
+    <>
+      <div className="h-full relative">
+        {allInteractors.map(
+          (chat) =>
+            chat.interactorId && (
+              <Interactors
+                interactorName={chat.interactorName}
+                interactorId={chat.interactorId}
+                key={chat.id}
+                active={chat.interactorId === selectedInteractor ? true : false}
+              />
+            )
+        )}
+      </div>
+      <div className="sticky bottom-0 px-2 py-6 flex items-center justify-center text-green-800 space-x-2">
+        <strong className="text-2xl rounded-2xl bg-gray-200 px-2  cursor-pointer ">
+          &#43;
+        </strong>
+        <span className=" text-xl">Contact</span>
+      </div>
+    </>
   );
 }
 
