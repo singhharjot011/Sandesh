@@ -14,11 +14,13 @@ function MessageInput() {
 
   useEffect(() => {
     textAreaRef.current.style.height = "auto";
-    textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px";
+    const maxHeight = 100;
+    const newHeight = Math.min(textAreaRef.current.scrollHeight, maxHeight);
+    textAreaRef.current.style.height = newHeight + "px";
   }, [myText]);
 
   return (
-    <div>
+    <div className="">
       <form
         className="my-auto"
         onSubmit={(e) => {
@@ -31,11 +33,8 @@ function MessageInput() {
             message: myText,
             timestamp: new Date().toISOString(),
           };
-          console.log(data);
-          console.log(curChat);
-
           dispatch({ type: "data/updated", payload: [...data, newChatObj] });
-          // dispatch({ type: "chat/loaded", payload: [...curChat, newChatObj] });
+          dispatch({ type: "typed/text", payload: "" });
         }}
       >
         <label htmlFor="chat" className="sr-only">

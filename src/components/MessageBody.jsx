@@ -26,14 +26,24 @@ function MessageBody() {
       </div>
     );
   return (
-    <div className="flex flex-col w-4/5 justify-end">
-      <div className="flex flex-col-reverse p-4">
+    <div className="flex flex-col w-4/5 justify-end relative ">
+      <div className="flex flex-col-reverse p-4 mb-5 w-full h-7/10">
         {curChat
           .sort(
             (a, b) =>
               getMilliseconds(b.timestamp) - getMilliseconds(a.timestamp)
           )
-          .map((c) => (
+          .map((c, i, arr) => (
+            //   const todayDate = new Date();
+            //   const newDate = new Date(arr[i].timestamp);
+            //   const oldDate = new Date(arr[i - 1]?.timestamp);
+
+            //   <span>
+            //   {todayDate.getDate() === newDate.getDate() &&
+            //     todayDate.getDate() !== oldDate.getDate() &&
+            //     "Today"}
+            // </span>
+
             <MessageContent
               position={c.isSender ? "self-end" : "self-start"}
               bgColor={c.isSender ? "bg-gray-100" : "bg-green-700"}
@@ -45,7 +55,9 @@ function MessageBody() {
             />
           ))}
       </div>
-      <MessageInput />
+      <div className="w-full h-3/10">
+        <MessageInput />
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ function Sidebar() {
   const allInteractors = [...interactorsMap.values()];
 
   return (
-    <div className="w-1/5 h-full border-r">
+    <div className="w-1/5 h-full border-r sticky top-0">
       {allInteractors.map(
         (chat) =>
           chat.interactorId && (
