@@ -14,7 +14,7 @@ function MessageInput() {
     textAreaRef.current.focus();
   }, [myText]);
 
-  function handleSendMessage(e){
+  function handleSendMessage(e) {
     e.preventDefault();
     const newChatObj = {
       id: data.length + 1,
@@ -29,10 +29,7 @@ function MessageInput() {
   }
 
   return (
-    <form
-      className="my-auto"
-      onSubmit={handleSendMessage}
-    >
+    <form className="my-auto" onSubmit={handleSendMessage}>
       <label htmlFor="chat" className="sr-only">
         Your message
       </label>
@@ -99,6 +96,11 @@ function MessageInput() {
           value={myText}
           onChange={(e) => {
             dispatch({ type: "typed/text", payload: e.target.value });
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              handleSendMessage(e);
+            }
           }}
         ></textarea>
         <button

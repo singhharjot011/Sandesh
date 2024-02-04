@@ -49,6 +49,7 @@ const initialState = {
   data: FAKE_DATA,
   curChat: {},
   myText: "",
+  openContact: false,
 };
 
 const ChatContext = createContext();
@@ -81,6 +82,8 @@ function reducer(state, action) {
       return { ...state, myText: action.payload };
     case "data/updated":
       return { ...state, data: action.payload };
+    case "contact/opened":
+      return { ...state, openContact: action.payload };
     default:
       throw new Error("Invalid Action");
   }
@@ -88,7 +91,14 @@ function reducer(state, action) {
 
 function ChatProvider({ children }) {
   const [
-    { selectedInteractor, selectedInteractorName, curChat, myText, data },
+    {
+      selectedInteractor,
+      selectedInteractorName,
+      curChat,
+      myText,
+      data,
+      openContact,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -101,6 +111,7 @@ function ChatProvider({ children }) {
         selectedInteractorName,
         curChat,
         myText,
+        openContact,
       }}
     >
       {children}
