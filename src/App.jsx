@@ -8,6 +8,7 @@ function App() {
       <ChatProvider>
         <AppLayout />
       </ChatProvider>
+      <div></div>
     </>
   );
 }
