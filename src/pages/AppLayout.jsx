@@ -1,11 +1,13 @@
+import AddContact from "../components/AddContact";
 import Header from "../components/Header";
 import MessageBody from "../components/MessageBody";
 import MessageInput from "../components/MessageInput";
 import Sidebar from "../components/Sidebar";
 import { useChat } from "../contexts/chatContext";
 
+
 function AppLayout() {
-  const { curChat, dispatch, selectedInteractor, openContact } = useChat();
+  const { selectedInteractor, openContact } = useChat();
 
   return (
     <div className="flex flex-wrap h-screen w-screen">
@@ -16,11 +18,7 @@ function AppLayout() {
         <Sidebar />
       </div>
       {openContact ? (
-        <div className="w-4/5 flex flex-col absolute right-0 h-full">
-          <div className="flex w-full  p-4 pt-16 overflow-y-auto flex-grow">
-            Add contact
-          </div>
-        </div>
+        <AddContact />
       ) : (
         <div className="w-4/5 flex flex-col absolute right-0 h-full">
           <div className="flex flex-col-reverse w-full  p-4 pt-16 overflow-y-auto flex-grow">

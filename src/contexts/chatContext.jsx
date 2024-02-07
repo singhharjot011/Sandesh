@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer } from "react";
 const FAKE_DATA = [
   {
     id: 1,
-    interactorId: "user123",
+    interactorId: "e0be74d0-c2a7-4f04-9789-c9607aa338a9",
     interactorName: "John Doe",
     isSender: false,
     timestamp: "2023-01-15T12:34:56.789Z",
@@ -11,7 +11,7 @@ const FAKE_DATA = [
   },
   {
     id: 2,
-    interactorId: "user456",
+    interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
     interactorName: "Alice",
     isSender: false,
     timestamp: "2023-01-15T12:35:10.123Z",
@@ -19,7 +19,7 @@ const FAKE_DATA = [
   },
   {
     id: 3,
-    interactorId: "user123",
+    interactorId: "e0be74d0-c2a7-4f04-9789-c9607aa338a9",
     interactorName: "John Doe",
     isSender: false,
     timestamp: "2023-01-15T12:36:24.567Z",
@@ -27,7 +27,7 @@ const FAKE_DATA = [
   },
   {
     id: 4,
-    interactorId: "user456",
+    interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
     interactorName: "Alice",
     isSender: false,
     timestamp: "2023-01-15T12:37:45.678Z",
@@ -35,7 +35,7 @@ const FAKE_DATA = [
   },
   {
     id: 5,
-    interactorId: "user456",
+    interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
     interactorName: "Alice",
     isSender: true,
     timestamp: "2023-01-15T12:39:00.000Z",
@@ -43,10 +43,26 @@ const FAKE_DATA = [
   },
 ];
 
+const CONTACTS = [
+  {
+    interactorId: "e0be74d0-c2a7-4f04-9789-c9607aa338a9",
+    contactName: "John Doe",
+    contactNumber: "1234567890",
+    lastMessageTimeStamp: "",
+  },
+  {
+    interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
+    contactName: "Alice",
+    contactNumber: "9876543210",
+    astMessageTimeStamp: "",
+  },
+];
+
 const initialState = {
   selectedInteractor: null,
   selectedInteractorName: "",
   data: FAKE_DATA,
+  contacts: CONTACTS,
   curChat: {},
   myText: "",
   openContact: false,
@@ -81,9 +97,15 @@ function reducer(state, action) {
     case "typed/text":
       return { ...state, myText: action.payload };
     case "data/updated":
-      return { ...state, data: action.payload };
+      return {
+        ...state,
+        data: action.payload.data,
+        contacts: action.payload.contacts,
+      };
     case "contact/opened":
       return { ...state, openContact: action.payload };
+    case "contact/added":
+      return { ...state, contacts: action.payload };
     default:
       throw new Error("Invalid Action");
   }
@@ -98,6 +120,7 @@ function ChatProvider({ children }) {
       myText,
       data,
       openContact,
+      contacts,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -112,6 +135,7 @@ function ChatProvider({ children }) {
         curChat,
         myText,
         openContact,
+        contacts,
       }}
     >
       {children}

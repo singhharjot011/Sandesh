@@ -9,15 +9,16 @@ function Interactors({ active, interactorName, interactorId }) {
         className={`flex items-center space-x-2 px-2 py-4 border-b cursor-pointer ${
           active ? "bg-green-700" : ""
         }`}
-        onClick={() =>
+        onClick={() => {
           dispatch({
             type: "interactor/selected",
             payload: {
               interactorId: interactorId,
               interactorName: interactorName,
             },
-          })
-        }
+          });
+          dispatch({ type: "contact/opened", payload: false });
+        }}
       >
         <img
           className="w-8 h-8 rounded-full"

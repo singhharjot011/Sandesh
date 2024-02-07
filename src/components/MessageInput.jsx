@@ -3,8 +3,14 @@ import { useChat } from "../contexts/chatContext";
 
 function MessageInput() {
   const textAreaRef = useRef();
-  const { dispatch, myText, selectedInteractor, selectedInteractorName, data } =
-    useChat();
+  const {
+    dispatch,
+    myText,
+    selectedInteractor,
+    selectedInteractorName,
+    data,
+    contacts,
+  } = useChat();
 
   useEffect(() => {
     textAreaRef.current.style.height = "auto";
@@ -12,7 +18,7 @@ function MessageInput() {
     const newHeight = Math.min(textAreaRef.current.scrollHeight, maxHeight);
     textAreaRef.current.style.height = newHeight + "px";
     textAreaRef.current.focus();
-  }, [myText]);
+  }, [myText, selectedInteractor]);
 
   function handleSendMessage(e) {
     e.preventDefault();
@@ -24,7 +30,10 @@ function MessageInput() {
       message: myText,
       timestamp: new Date().toISOString(),
     };
-    dispatch({ type: "data/updated", payload: [...data, newChatObj] });
+    dispatch({
+      type: "data/updated",
+      payload: { data: [...data, newChatObj], contacts: [...contacts] },
+    });
     dispatch({ type: "typed/text", payload: "" });
   }
 

@@ -25,7 +25,7 @@ function MessageContent({
         {chatObj.message}
       </p>
       <div className="flex text-xs space-x-2 justify-end">
-        <span className={`${statusTextColor}`}> {isSender && "Delivered"}</span>
+        <span className={`${statusTextColor}`}>{isSender && "Sent"}</span>
         <span className={`${statusTextColor}`}>
           {formatTime(chatObj.timestamp)}
         </span>
