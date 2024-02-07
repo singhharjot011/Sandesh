@@ -12,8 +12,14 @@ function Sidebar() {
       <div className="h-full relative">
         {allContacts
           .sort((a, b) => {
-            a.lastMessageTimeStamp >= b.lastMessageTimeStamp;
-            return -1;
+            if (
+              Date.parse(a.lastMessageTimeStamp) >=
+              Date.parse(b.lastMessageTimeStamp)
+            )
+              return -1;
+            else {
+              return 1;
+            }
           })
           .map(
             (contact) =>
@@ -25,6 +31,7 @@ function Sidebar() {
                   active={
                     contact.interactorId === selectedInteractor ? true : false
                   }
+                  imgUrl={contact.imgUrl}
                 />
               )
           )}

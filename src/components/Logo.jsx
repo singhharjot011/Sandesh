@@ -1,6 +1,6 @@
 function Logo() {
   return (
-    <div className="w-1/4 h-full">
+    <div className="w-1/4 h-full ">
       <h1
         className="text-4xl font-semibold title bg-gradient-to-b from-green-600 via-green-500 to-green-800 bg-clip-text text-transparent 
        "

@@ -49,12 +49,16 @@ const CONTACTS = [
     contactName: "John Doe",
     contactNumber: "1234567890",
     lastMessageTimeStamp: "2023-01-15T12:36:24.567Z",
+    imgUrl:
+      "https://randomfacegenerator.com/assets/images/image01.jpg?v=117c1553",
   },
   {
     interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
     contactName: "Alice",
     contactNumber: "9876543210",
     lastMessageTimeStamp: "2023-01-15T12:39:00.000Z",
+    imgUrl:
+      "https://1.img-dpreview.com/files/p/TS560x560~forums/63132016/2a1e59e12f4543bea10f2385259c81cf",
   },
 ];
 

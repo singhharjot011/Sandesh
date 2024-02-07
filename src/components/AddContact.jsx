@@ -10,6 +10,7 @@ function AddContact() {
       interactorId: crypto.randomUUID(),
       contactName: e.target[0].value + " " + e.target[1].value,
       contactNumber: e.target[2].value,
+      imgUrl: e.target[3].value,
     };
 
     dispatch({
@@ -55,6 +56,7 @@ function AddContact() {
               Last name
             </label>
           </div>
+
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="number"
@@ -69,6 +71,21 @@ function AddContact() {
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0  peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-7"
             >
               Phone number <span className="text-xs">(Without area code)</span>
+            </label>
+          </div>
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="floating_img_url"
+              id="floating_img_url"
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+              placeholder=" "
+            />
+            <label
+              htmlFor="floating_img_url"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-7"
+            >
+              Image URL <span className="text-xs">(Optional)</span>
             </label>
           </div>
           <button

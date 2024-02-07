@@ -15,7 +15,7 @@ function MessageContent({
 
   return (
     <div
-      className={`flex flex-col w-max px-2 py-1 my-2 border-gray-200 ${bgColor} rounded-xl dark:bg-gray-700 ${position} `}
+      className={`flex flex-col w-max px-2 py-1 my-2 border-gray-200 ${bgColor} rounded-xl dark:bg-gray-700 ${position} z-10`}
     >
       <div className="flex items-center space-x-2"></div>
       <p

@@ -22,6 +22,7 @@ function MessageInput() {
 
   function handleSendMessage(e) {
     e.preventDefault();
+
     const newChatObj = {
       id: data.length + 1,
       interactorId: selectedInteractor,
@@ -31,21 +32,17 @@ function MessageInput() {
       timestamp: new Date().toISOString(),
     };
 
-    const updatedContactObj = {
-      interactorId: selectedInteractor,
-      contactName: selectedInteractorName,
-      contactNumber: contacts.filter(
-        (c) => c.interactorId === selectedInteractor
-      ).contactNumber,
-      lastMessageTimeStamp: new Date().toISOString(),
-    };
     dispatch({
       type: "data/updated",
       payload: {
         data: [...data, newChatObj],
         contacts: [
           ...contacts.filter((c) => c.interactorId !== selectedInteractor),
-          updatedContactObj,
+          contacts.find((c) =>
+            c.interactorId === selectedInteractor
+              ? (c.lastMessageTimeStamp = new Date().toISOString())
+              : ""
+          ),
         ],
       },
     });

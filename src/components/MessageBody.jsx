@@ -19,8 +19,8 @@ function MessageBody() {
 
   if (!selectedInteractor)
     return (
-      <div className="flex justify-center items-center  text-gray-400 flex-grow">
-        <strong className="w-max">
+      <div className="flex justify-center items-center  text-gray-800 flex-grow ">
+        <strong className="w-max text-xl">
           Select someone from the sidebar to start chat
         </strong>
       </div>
@@ -44,7 +44,7 @@ function MessageBody() {
 
           <MessageContent
             position={c.isSender ? "self-end" : "self-start"}
-            bgColor={c.isSender ? "bg-gray-100" : "bg-green-700"}
+            bgColor={c.isSender ? "bg-gray-200" : "bg-green-700"}
             textColor={c.isSender ? "text-black" : "text-gray-50"}
             statusTextColor={c.isSender ? "text-gray-800" : "text-gray-200"}
             chatObj={c}

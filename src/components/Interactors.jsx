@@ -1,6 +1,6 @@
 import { useChat } from "../contexts/chatContext";
 
-function Interactors({ active, interactorName, interactorId }) {
+function Interactors({ active, interactorName, interactorId, imgUrl }) {
   const { dispatch } = useChat();
 
   return (
@@ -22,8 +22,10 @@ function Interactors({ active, interactorName, interactorId }) {
       >
         <img
           className="w-8 h-8 rounded-full"
-          src="https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"
-          alt="Jese image"
+          src={
+            imgUrl ? imgUrl : "https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"
+          }
+          alt="DP"
         />
         <span
           className={`text-sm font-semibold ${
