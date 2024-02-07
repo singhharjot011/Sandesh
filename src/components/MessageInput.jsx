@@ -30,9 +30,24 @@ function MessageInput() {
       message: myText,
       timestamp: new Date().toISOString(),
     };
+
+    const updatedContactObj = {
+      interactorId: selectedInteractor,
+      contactName: selectedInteractorName,
+      contactNumber: contacts.filter(
+        (c) => c.interactorId === selectedInteractor
+      ).contactNumber,
+      lastMessageTimeStamp: new Date().toISOString(),
+    };
     dispatch({
       type: "data/updated",
-      payload: { data: [...data, newChatObj], contacts: [...contacts] },
+      payload: {
+        data: [...data, newChatObj],
+        contacts: [
+          ...contacts.filter((c) => c.interactorId !== selectedInteractor),
+          updatedContactObj,
+        ],
+      },
     });
     dispatch({ type: "typed/text", payload: "" });
   }

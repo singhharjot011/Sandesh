@@ -18,3 +18,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.title {
+  font-family: "Protest Riot", sans-serif;
+}

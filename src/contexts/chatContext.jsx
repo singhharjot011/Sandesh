@@ -48,13 +48,13 @@ const CONTACTS = [
     interactorId: "e0be74d0-c2a7-4f04-9789-c9607aa338a9",
     contactName: "John Doe",
     contactNumber: "1234567890",
-    lastMessageTimeStamp: "",
+    lastMessageTimeStamp: "2023-01-15T12:36:24.567Z",
   },
   {
     interactorId: "e0be74d0-c2a8-4f04-9779-c9607aa338a9",
     contactName: "Alice",
     contactNumber: "9876543210",
-    astMessageTimeStamp: "",
+    lastMessageTimeStamp: "2023-01-15T12:39:00.000Z",
   },
 ];
 

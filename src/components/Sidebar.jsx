@@ -12,10 +12,7 @@ function Sidebar() {
       <div className="h-full relative">
         {allContacts
           .sort((a, b) => {
-            // console.log(
-            //   data.find((entry, index) => entry.interactorId === a.interactorId)
-            // );
-            // console.log(data.map((entry) => entry));
+            a.lastMessageTimeStamp >= b.lastMessageTimeStamp;
             return -1;
           })
           .map(
