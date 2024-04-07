@@ -9,7 +9,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className="h-full relative">
+      <div className="h-full  relative overflow-auto">
         {allContacts
           .sort((a, b) => {
             if (

@@ -22,6 +22,7 @@ function MessageInput() {
 
   function handleSendMessage(e) {
     e.preventDefault();
+    if (myText.trim() === "") return;
 
     const newChatObj = {
       id: data.length + 1,
