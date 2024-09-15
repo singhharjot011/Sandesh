@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Larry",
+    "email": "larry@example.com",
+    "passwordHash": "hashed_password_string",
+    "profilePicture": "/images/larry_profile.jpg",
+    "status": "online",
+    "createdAt": "2024-09-13T10:00:00Z",
+    "updatedAt": "2024-09-13T10:00:00Z",
+    "phoneNumber": "+1234567880",
+    "lastLogin": "2024-09-13T09:00:00Z",
+    "bio": "Chatting all Day!!"
+  },
+  {
+    "name": "Bob",
+    "email": "bob@example.com",
+    "passwordHash": "hashed_password_string",
+    "profilePicture": "/images/bob_profile.jpg",
+    "status": "online",
+    "createdAt": "2024-09-13T10:00:00Z",
+    "updatedAt": "2024-09-13T10:00:00Z",
+    "phoneNumber": "+1234567890",
+    "lastLogin": "2024-09-13T09:00:00Z",
+    "bio": "Love coding and chatting!"
+  },
+  {
+    "name": "Tom",
+    "email": "tom@example.com",
+    "passwordHash": "hashed_password_string",
+    "profilePicture": "/images/tom_profile.jpg",
+    "status": "away",
+    "createdAt": "2024-09-13T10:00:00Z",
+    "updatedAt": "2024-09-13T10:00:00Z",
+    "phoneNumber": "+0987654321",
+    "lastLogin": "2024-09-12T20:00:00Z",
+    "bio": "Chat enthusiast.",
+    "roles": ["user"]
+  }
+]
